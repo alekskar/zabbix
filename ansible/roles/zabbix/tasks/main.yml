@@ -9,7 +9,7 @@
       - zabbix 
       - zabbix-server
       - zabbix-server-mysql
-      - zabbix-zabbix-web-mysql
+      - zabbix-web-mysql
       - zabbix-agent
 - debug: msg="create configuration templates"
 - template:
@@ -17,7 +17,7 @@
     dest={{ item.dest }}
   with_items:
     - {filename: "zabbix_server.conf", dest: "/etc/zabbix/"}
-    - {filename: "zabbix.conf", dest: "/etc/http/conf.d/"}
+    - {filename: "zabbix.conf", dest: "/etc/httpd/conf.d/"}
 #src=zabbix.conf dest=/etc/httpd/conf.d/
 - debug: msg="database name is {{ DBName }} "
 - name: import initial schema
@@ -29,3 +29,5 @@
 - name: Starting zabbix-server and zabbix-agent
   service: name=zabbix-server state=started enabled=yes
   notify: restarting httpd
+- name: zabbix-agent start
+  service: name=zabbix-agent state=started enabled=yes
