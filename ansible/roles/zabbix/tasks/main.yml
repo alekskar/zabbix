@@ -1,0 +1,31 @@
+---
+# tasks file for zabbix 
+- debug: msg="Will install zabbix"
+- name: install zabbix repo
+  yum: name=http://repo.zabbix.com/zabbix/2.2/rhel/6/x86_64/zabbix-release-2.2-1.el6.noarch.rpm state=present
+- name: zabbix install
+  yum: name={{ item }} state=present
+  with_items:
+      - zabbix 
+      - zabbix-server
+      - zabbix-server-mysql
+      - zabbix-zabbix-web-mysql
+      - zabbix-agent
+- debug: msg="create configuration templates"
+- template:
+    src={{ item.filename }}
+    dest={{ item.dest }}
+  with_items:
+    - {filename: "zabbix_server.conf", dest: "/etc/zabbix/"}
+    - {filename: "zabbix.conf", dest: "/etc/http/conf.d/"}
+#src=zabbix.conf dest=/etc/httpd/conf.d/
+- debug: msg="database name is {{ DBName }} "
+- name: import initial schema
+  shell: mysql -uroot {{ DBName }} < /usr/share/doc/zabbix-server-mysql-2.2.14/create/schema.sql
+- name: import initial image 
+  shell: mysql -uroot {{ DBName }} < /usr/share/doc/zabbix-server-mysql-2.2.14/create/images.sql
+- name: import initial data
+  shell: mysql -uroot {{ DBName }} < /usr/share/doc/zabbix-server-mysql-2.2.14/create/data.sql
+- name: Starting zabbix-server and zabbix-agent
+  service: name=zabbix-server state=started enabled=yes
+  notify: restarting httpd

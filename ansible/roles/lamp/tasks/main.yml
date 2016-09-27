@@ -1,0 +1,19 @@
+---
+# tasks file for LAMP 
+- debug: msg="Will install mysql php and configure apache"
+- name: Install mysql server
+  yum: name={{ item }} state=present
+  with_items:
+    - mysql
+    - mysql-server
+    - MySQL-python
+- name: change database behaviour my.cnf
+  template: src=my.cnf dest=/etc/
+- name: mysql inicial configuration
+  shell: /usr/bin/mysql_install_db --user=mysql
+- name: Start mysql-server
+  service: name=mysqld state=started enabled=yes
+- name: create zabbix DB
+  mysql_db: name=zabbix encoding=utf8 collation=utf8_bin state=present 
+- name: create zabbix user and grand privileges
+  mysql_user: name=zabbix password=zabbix priv=*.*:ALL host=localhost state=present
