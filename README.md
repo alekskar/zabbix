@@ -81,8 +81,10 @@ json to find needed host
 "params":{
         "selectInterfaces":"extend",
     "filter":{
-        "host":"Zabbix node1"
+        "host":"Zabbix node1",
+        
     }
+    "ip":"192.168.100.93"
 },
 "auth":"dbf465d86b97c238ee205e4de9ae9191",
 "id":1
@@ -97,16 +99,14 @@ json to find needed host
 ```
 
 {
-"jsonrpc":"2.0",
-"method":"host.get",
-"params":{
-        "selectInterfaces":"extend",
-    "filter":{
-        "host":"Zabbix node1"
-    }
-},
-"auth":"dbf465d86b97c238ee205e4de9ae9191",
-"id":1
+   "jsonrpc":"2.0",
+   "method":"hostinterface.update",
+   "params":{
+      "interfaceid": "3",
+      "ip":"192.168.100.92"
+   },
+   "auth":"dbf465d86b97c238ee205e4de9ae9191",
+   "id":1
 }
 
 ```
