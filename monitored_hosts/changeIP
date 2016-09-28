@@ -1,0 +1,12 @@
+{
+"jsonrpc":"2.0",
+"method":"host.get",
+"params":{
+        "selectInterfaces":"extend",
+    "filter":{
+        "host":"Zabbix node1"
+    }
+},
+"auth":"5741b856c21b1710ccbba06c393a946b",
+"id":1
+}

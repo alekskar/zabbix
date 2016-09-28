@@ -1,0 +1,29 @@
+{
+    "jsonrpc": "2.0",
+    "method": "host.create",
+    "params": {
+        "host": "Zabbix node1",
+        "interfaces": [
+            {
+                "type": 1,
+                "main": 1,
+                "useip": 1,
+                "ip": "192.168.100.91",
+                "dns": "",
+                "port": "10050"
+            }
+        ],
+        "groups": [
+            {
+                "groupid": "8"
+            }
+        ],
+        "templates": [
+            {
+                "templateid": "10106"
+            }
+        ]
+    },
+    "auth": "5741b856c21b1710ccbba06c393a946b",
+    "id": 1
+}

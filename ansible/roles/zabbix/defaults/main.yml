@@ -1,0 +1,7 @@
+---
+# defaults file for jenkinsi
+zabbix_port: 80
+DBHost: localhost
+DBName: zabbix
+DBUser: zabbix
+DBPassword: zabbix

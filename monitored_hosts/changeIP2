@@ -1,0 +1,10 @@
+{
+   "jsonrpc":"2.0",
+   "method":"hostinterface.update",
+   "params":{
+      "interfaceid": "3",
+      "ip":"192.168.100.92"
+   },
+   "auth":"5741b856c21b1710ccbba06c393a946b",
+   "id":1
+}
