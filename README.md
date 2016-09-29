@@ -27,10 +27,12 @@ nmap -p587 mail.sviat.by
 
 7. Make graphics for collected counters.
 
-8. Make summary screen with previously configured graphics.
+
 ![](https://github.com/alekskar/zabbix/blob/task3/resources/zabbix3_jmx_items.png)
 ![](https://github.com/alekskar/zabbix/blob/task3/resources/zabbix3_results_monitoring.png)
 ![](https://github.com/alekskar/zabbix/blob/task3/resources/zabbix3_heap_memory_custom.png)
 ![](https://github.com/alekskar/zabbix/blob/task3/resources/zabbix3__web_download_speed.png)
 ![](https://github.com/alekskar/zabbix/blob/task3/resources/Zabbix3_web_200ok.png)
 ![](https://github.com/alekskar/zabbix/blob/task3/resources/zabbix3_web_responce.png)
+8. Make summary screen with previously configured graphics.
+![](resources/screen.png)
