@@ -13,6 +13,10 @@ nmap -p$1 $2 # e.g nmap -p587 mail.sviat.by
 
 ![](https://github.com/alekskar/zabbix/blob/task3/resources/zabbix3_external_script_create.png)
 
+changed external check with parameters
+
+![](resources/key2.png)
+
 3. Setup web monitoring for any external web site.
 ![](https://github.com/alekskar/zabbix/blob/task3/resources/zabbix3_web.png)
 
