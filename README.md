@@ -8,7 +8,7 @@
 
 simple script is
 ```
-nmap -p587 mail.sviat.by
+nmap -p{$1} {$2} # e.g nmap -p587 mail.sviat.by
 ```
 
 ![](https://github.com/alekskar/zabbix/blob/task3/resources/zabbix3_external_script_create.png)
