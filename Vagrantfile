@@ -23,4 +23,10 @@ Vagrant.configure(2) do |config|
   yum install -y http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
   yum install -y phpldapadmin
   SHELL
+
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = 'ansible/provision.roles.yml'
+    ansible.verbose = 'vv'
+  end
+end
 end
