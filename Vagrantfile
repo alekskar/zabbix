@@ -12,10 +12,6 @@ Vagrant.configure(2) do |config|
 #    vb = config.vm.hostname
 #  end
 
-#  config.vm.provision "ansible" do |ansible|
-#    ansible.playbook = 'ansible/provision.roles.yml'
-#    ansible.verbose = 'vv'
-#  end
   config.vm.provision "shell", inline: <<-SHELL
   echo "Provisioning: hosts is ready for provisioning"
   yum install -y openldap-servers openldap-clients
@@ -28,5 +24,5 @@ Vagrant.configure(2) do |config|
     ansible.playbook = 'ansible/provision.roles.yml'
     ansible.verbose = 'vv'
   end
-end
+
 end
