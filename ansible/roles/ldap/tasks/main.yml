@@ -1,0 +1,40 @@
+---
+# tasks file for ldap
+- debug: msg="Will install ldap"
+- name: ldap install
+  yum: name={{ item }} state=present
+  with_items:
+      - openldap-servers 
+      - openldap-clients
+- debug: msg="create configuration templates"
+- name: copy config
+  file: src=/usr/share/openldap-servers/DB_CONFIG.example dest=/var/lib/ldap/DB_CONFIG
+- name: chown to Ldap user
+  file: src=/var/lib/ldap state=directory owner=ldap group=ldap recurse=yes
+- name: delete folder
+  file: /etc/openldap/slapd.d state=absent
+- name: copy slapd.conf
+  copy: src=slapd.conf desc=/etc/openldap/slapd.conf owner=ldap group=ldap mode=0700
+- name: start ldap service
+  service: name=slapd state=started enabled=true
+- name: create data structure
+  shell: ldapadd -x -D "cn=admin,dc=mnt,dc=lab" -w password -f /etc/openldap/ldap-init.ldif
+- name: add users
+  shell: ldapadd -x -D "cn=admin,dc=mnt,dc=lab" -w password -f /etc/openldap/akaravaig.ldif
+- template:
+    src={{ item.filename }}
+    dest={{ item.dest }}
+  with_items:
+    - {filename: "ldap.conf", dest: "/etc/zabbix/"}
+    - {filename: "phpldapadmin.conf", dest: "/etc/httpd/conf.d/"}
+    - {filename: "slapd.conf", dest: "/etc/httpd/conf.d/"}
+    
+#src=zabbix.conf dest=/etc/httpd/conf.d/
+- debug: msg="database name is {{ DBName }} "
+- name: import initial schema
+  shell: mysql -uroot {{ DBName }} < /usr/share/doc/zabbix-server-mysql-2.2.14/create/schema.sql
+- name: Starting zabbix-server and zabbix-agent
+  service: name=zabbix-server state=started enabled=yes
+  notify: restarting httpd
+- name: zabbix-agent start
+  service: name=zabbix-agent state=started enabled=yes

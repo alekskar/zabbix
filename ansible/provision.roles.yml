@@ -1,0 +1,20 @@
+- name: Provision with Ansible
+  hosts: all
+  become: yes
+
+  vars:
+    services_info: |
+     Zabbix is available - http://zabbix-server
+     Application URL - http://localhost:80/
+     zabbix_prefix: /zabbix-server
+    
+        
+
+  pre_tasks:
+  - debug: msg="This playbook installs and configure ZABBIX"
+
+  roles:
+  - ldap 
+
+  post_tasks:
+  - debug: var=services_info.split('\n')

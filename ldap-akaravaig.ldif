@@ -1,0 +1,28 @@
+# create group for user akaravai 
+dn: cn=akaravai,ou=Groups,dc=mnt,dc=lab
+cn: akaravai
+gidNumber: 11011
+objectClass: posixGroup
+objectClass: top
+memberUid: akaravai
+
+# akaravai user
+
+dn: uid=akaravai,ou=People,dc=mnt,dc=lab
+uid: akaravai
+homeDirectory: /home/akaravai
+loginShell: /bin/bash
+mail: aliaksandr_karavai@epam.com
+uidNumber: 11011
+gidNumber: 11011
+gecos: User In LDAP
+cn: User In LDAP
+givenName: AliaksandrKaravai 
+sn: InLDAP
+objectClass: top
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+userPassword: password
