@@ -1,0 +1,71 @@
+# user1, Groups, mnt.lab
+dn: cn=user1,ou=Groups,dc=mnt,dc=lab
+cn: user1
+gidNumber: 11019
+objectClass: posixGroup
+objectClass: top
+memberUid: user1
+
+#User1, Persons, mnt.lab
+dn: uid=user1,ou=People,dc=mnt,dc=lab
+uid: user1
+homeDirectory: /home/user1
+loginShell: /bin/bash
+mail: user1@local
+uidNumber: 11019
+gidNumber: 11019
+gecos: user with access
+cn: User in LDAP
+givenName: FirstUser
+sn: InLDAP
+objectClass: top
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+userPassword: password1
+
+# User2
+# userinldap, Groups, mnt.lab
+dn: cn=user2,ou=Groups,dc=mnt,dc=lab
+cn: user2
+gidNumber: 11018
+objectClass: posixGroup
+objectClass: top
+memberUid: user2
+
+# userinldap, People, mnt.lab
+dn: uid=user2,ou=People,dc=mnt,dc=lab
+uid: user2
+homeDirectory: /home/user2
+loginShell: /bin/bash
+mail: user2@local
+uidNumber: 11018
+gidNumber: 10018
+gecos: User In LDAP
+cn: User In LDAP
+givenName: User2
+sn: InLDAP
+objectClass: top
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+userPassword: password2
+
+#zabbix, Services, mnt.lab
+dn: cn=zabbix,ou=Services,dc=mnt,dc=lab
+cn: zabbix
+member: uid=user1,ou=People,dc=mnt,dc=lab
+member: uid=user2,ou=People,dc=mnt,dc=lab
+objectClass: groupOfNames
+objectClass: top
+
+#Linux, Groups, mnt.lab
+dn: cn=linux,ou=Groups,dc=mnt,dc=lab
+cn: linux
+member: uid=user1,ou=People,dc=mnt,dc=lab
+objectClass: groupOfNames
+objectClass: top
